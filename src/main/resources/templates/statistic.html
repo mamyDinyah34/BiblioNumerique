@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+<body>
+  <div th:insert="~{index:: navbar}"></div>
+  <div th:insert="~{index:: sidebar}"></div>
+  <div class="p-8 sm:ml-64">
+    <div class="p-6 rounded-lg mt-14">
+      <div class="grid grid-cols-2 gap-8 mb-6">
+        <div class="flex items-center justify-center rounded-lg bg-blue-100 h-36 dark:bg-blue-900">
+          <i class="fas fa-book text-4xl text-blue-600 dark:text-blue-300 mr-4"></i>
+          <p class="text-3xl text-blue-600 dark:text-blue-300">Total Livres acceptés: <span th:text="${totalLivres}"></span></p>
+        </div>
+        <div class="flex items-center justify-center rounded-lg bg-purple-100 h-36 dark:bg-purple-900">
+          <i class="fas fa-clock text-4xl text-purple-600 dark:text-purple-300 mr-4"></i>
+          <p class="text-3xl text-purple-600 dark:text-purple-300">Total Livres en attente: <span th:text="${totalLivresAttente}"></span></p>
+        </div>
+        <div class="flex items-center justify-center rounded-lg bg-green-100 h-36 dark:bg-green-900">
+          <i class="fas fa-users text-4xl text-green-600 dark:text-green-300 mr-4"></i>
+          <p class="text-3xl text-green-600 dark:text-green-300">Total Lecteurs: <span th:text="${totalLecteurs}"></span></p>
+        </div>
+        <div class="flex items-center justify-center rounded-lg bg-yellow-100 h-36 dark:bg-yellow-900">
+          <i class="fas fa-user text-4xl text-yellow-600 dark:text-yellow-300 mr-4"></i>
+          <p class="text-3xl text-yellow-600 dark:text-yellow-300">Total Auteurs: <span th:text="${totalAuteurs}"></span></p>
+        </div>
+        <div class="flex items-center justify-center rounded-lg bg-red-100 h-36 dark:bg-red-900">
+          <i class="fas fa-list text-4xl text-red-600 dark:text-red-300 mr-4"></i>
+          <p class="text-3xl text-red-600 dark:text-red-300">Total Catégories: <span th:text="${totalCategories}"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-toggle-icon');
+
+    // Vérifie le mode sombre lors du chargement de la page
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+
+    // Bascule entre le mode sombre et clair
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+
+      // Sauvegarde le mode dans localStorage
+      if (document.documentElement.classList.contains('dark')) {
+        localStorage.setItem('theme', 'dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+      } else {
+        localStorage.setItem('theme', 'light');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+    });
+  </script>
+</body>
+</html>

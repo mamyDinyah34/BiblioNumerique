@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Livre</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        body {
+            transition: background-color 0.3s;
+        }
+        .dark {
+            background-color: #1f2937;
+        }
+        .dark .bg-white {
+            background-color: #374151;
+        }
+        .dark .text-gray-700 {
+            color: #e5e7eb;
+        }
+        .dark .border-gray-300 {
+            border-color: #4b5563;
+        }
+        .dark .text-gray-900 {
+            color: #e5e7eb;
+        }
+        .dark .bg-gray-50 {
+            background-color: #4b5563;
+        }
+        .dark .bg-blue-700 {
+            background-color: #3b82f6;
+        }
+        .dark .bg-blue-800 {
+            background-color: #2563eb;
+        }
+        .dark .focus\:ring-primary-600:focus {
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="p-6 max-w-md mx-auto bg-white rounded-xl shadow-md space-y-6 dark:bg-gray-800">
+        <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300">Mettre à jour le livre</h2>
+        <form th:action="@{/MettreAJourLivre}" method="post">
+            <input type="hidden" name="id" th:value="${livre.id}" />
+
+            <div class="mb-4">
+                <label for="titre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Titre</label>
+                <input type="text" name="titre" id="titre" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" th:value="${livre.titre}" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="langue" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Langue</label>
+                <input type="text" name="langue" id="langue" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" th:value="${livre.langue}" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="categorie" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Catégorie</label>
+                <div class="flex items-center">
+                    <select name="categorie.id" id="categorie" class="bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required>
+                        <option th:each="categorie : ${categories}" th:value="${categorie.id}" th:text="${categorie.nom}"></option>
+                    </select>
+                    <a th:href="@{/listCategories}" class="ml-2 p-2 text-white bg-blue-700 hover:bg-blue-800 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 inline-flex items-center">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">Sauvegarder</button>
+        </form>
+    </div>
+</body>
+</html>

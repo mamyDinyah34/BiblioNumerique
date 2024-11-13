@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Remarque</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f3f4f6;
+      margin: 0;
+    }
+    .email-container {
+      max-width: 900px;
+      width: 100%;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .email-header {
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      border-radius: 12px 12px 0 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+    .email-body {
+      padding: 20px;
+    }
+    .email-footer {
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ddd;
+      text-align: right;
+      border-radius: 0 0 12px 12px;
+    }
+    /* Mode sombre */
+    body.dark {
+      background-color: #1f2937;
+    }
+    .email-container.dark {
+      background-color: #374151;
+    }
+    .email-header.dark {
+      background-color: #4b5563;
+      color: white;
+    }
+    .email-body.dark {
+      color: white;
+    }
+    .email-footer.dark {
+      background-color: #4b5563;
+    }
+    textarea.dark {
+      background-color: #374151;
+      border-color: #6b7280;
+      color: white;
+    }
+    button.dark {
+      background-color: #2563eb;
+      border-color: #3b82f6;
+    }
+    button.dark:hover {
+      background-color: #1d4ed8;
+    }
+  </style>
+</head>
+<body class="dark">
+
+<div class="email-container mt-10 dark">
+  <div class="email-header dark">
+    Écrire seulement la raison
+  </div>
+
+  <form th:action="@{/envoyerRemarque}" method="post" class="email-body space-y-4 dark">
+    <input type="hidden" name="livreId" th:value="${livreId}">
+
+    <div>
+      <label for="remarque" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Remarque :</label>
+      <textarea id="remarque" name="remarque" required class="mt-1 block w-full h-60 p-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-md focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:focus:ring-indigo-600 dark:focus:border-indigo-600"></textarea>
+    </div>
+    <div class="email-footer dark">
+      <button type="submit" class="inline-flex items-center px-6 py-3 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-900 dark:hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-600">
+        <i class="fas fa-paper-plane mr-2"></i> Envoyer
+      </button>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+</html>
